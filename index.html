@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+    overflow: hidden;
+}
+
+/* SECTIONS */
+section {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+section.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+/* BACKGROUNDS */
+#page1 { background: url('bg1.jpg') center/cover no-repeat; }
+#page2 { background: url('bg2.jpg') center/cover no-repeat; }
+#page3 { background: url('bg3.jpg') center/cover no-repeat; }
+#page4 { background: url('bg4.jpg') center/cover no-repeat; }
+#page5 { background: url('bg5.jpg') center/cover no-repeat; }
+#page6 { background: url('bg6.jpg') center/cover no-repeat; }
+
+/* OVERLAY */
+section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+/* FRAME */
+.frame {
+    text-align: center;
+    color: white;
+    z-index: 2;
+    max-width: 700px;
+}
+
+/* TEXT */
+h1 {
+    font-size: 60px;
+    letter-spacing: 5px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+/* BUTTON */
+button {
+    margin-top: 25px;
+    padding: 10px 25px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+button:hover {
+    background: white;
+    color: black;
+}
+</style>
+
+</head>
+
+<body>
+
+<audio id="music" src="bairan.mp3" loop></audio>
+
+<!-- PAGE 1 -->
+
+<section id="page1" class="active">
+<div class="frame">
+<h1>WHAT'S TODAY</h1>
+<button onclick="start()">ENTER</button>
+</div>
+</section>
+
+<!-- PAGE 2 -->
+
+<section id="page2">
+<div class="frame">
+<h1>IT'S MY <br>KUCHUPUCHU KA <br>BIRTHDAYYYYY</h1>
+<h2 id="text">Does my Akshu like his birthday? 🥰</h2>
+<button onclick="yesClick()">YES</button>
+<button id="no">NO</button>
+</div>
+</section>
+
+<!-- PAGE 3 -->
+
+<section id="page3">
+<div class="frame">
+<h1>HAPPIEST BIRTHDAY MERA AKSHU</h1>
+<h2>you’re the best thing that’s ever happened to me 💖</h2>
+<button onclick="go('page4')">NEXT</button>
+</div>
+</section>
+
+<!-- PAGE 4 -->
+
+<section id="page4">
+<div class="frame">
+<h1>you mean so much to me</h1>
+<h2>the cutest, sweetest, hawtest person I know—kisi bhi bkl ko apna pyaara day ruin mat karne dena 😤💖</h2>
+<h2 style="font-size:14px;">tu hi bola tha paragraph nahi likhne 😒</h2>
+<button onclick="go('page5')">NEXT</button>
+</div>
+</section>
+
+<!-- PAGE 5 (YOUR ORIGINAL SCRAPBOOK IMAGE) -->
+
+<section id="page5">
+<div class="frame">
+
+<img src="scrapbook.jpg" style="
+ width: 500px;
+ border-radius: 12px;
+ box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+">
+
+<button onclick="go('page6')">NEXT</button>
+
+</div>
+</section>
+
+<!-- PAGE 6 -->
+
+<section id="page6">
+<div class="frame">
+<h1>happiest birthday mera baccha</h1>
+<h2>thank you sm for everything cutu 💖</h2>
+<button onclick="go('page1')">again? 😏</button>
+</div>
+</section>
+
+<script>
+
+function start(){
+document.getElementById("music").play();
+go("page2");
+}
+
+function go(id){
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+
+function yesClick(){
+document.getElementById("text").innerText="yey aagya line pe 😏💖";
+setTimeout(()=>go("page3"),1200);
+}
+
+let no=document.getElementById("no");
+let text=document.getElementById("text");
+let clicks=0;
+
+no.addEventListener("click",()=>{
+clicks++;
+
+if(clicks==1){
+text.innerText="huh teri himmat kaise hui? 😒";
+}
+else if(clicks==2){
+text.innerText="tu nahi sudherega 😑";
+}
+else{
+text.innerText="ab pakad ke dikha 😏";
+no.style.position="absolute";
+no.style.left=Math.random()*80+"vw";
+no.style.top=Math.random()*80+"vh";
+}
+});
+</script>
+
+</body>
+</html>
